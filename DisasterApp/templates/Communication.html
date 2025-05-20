@@ -1,0 +1,69 @@
+{% load static %}
+<html>
+<head>
+<title>Disaster Prediction</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+function validate(){
+	var x=document.forms["f1"]["t1"].value;
+	
+	if(x == null || x==""){
+		window.alert("query must be enter");
+		document.f1.username.focus();
+		return false;
+	}
+	
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="yellow"><font size="4" color="black">Disaster Prediction</font></center></font>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+		<li><a href="{% url 'LoadDataset' %}"><font size="2" color="black">Load & Process Dataset</font></a></font></li>
+	  <li><a href="{% url 'TrainML' %}"><font size="2" color="black">Train ML Algorithm</font></a></font></li>
+	   <li><a href="{% url 'Guidelines' %}"><font size="2" color="black">Guidelines</font></a></font></li>
+	   <li><a href="{% url 'Predict' %}"><font size="2" color="black">Predict Next Possible Disaster</font></a></font></li>
+	   <li><a href="{% url 'Communication' %}"><font size="2" color="black">Communications</font></a></font></li>	  
+	    <li><a href="{% url 'ViewCommunication' %}"><font size="2" color="black">View Communications</font></a></font></li>	  
+	   <li><a href="{% url 'index' %}"><font size="2" color="black">Logout</font></a></font></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'CommunicationAction' %} OnSubmit="return validate()">
+	{% csrf_token %}<br/>
+   <h3><b>Two Way Communication Screen</b></h3>
+   
+	<font size="" color="black"><center>{{ data }}</center></font>
+						
+						<table align="center" width="80" >
+			 <tr><td><font size="" color="black">Post&nbsp;Query</b>&nbsp;&nbsp;</td><td><input type="text" name="t1" style="font-family: Comic Sans MS" size="60"/></td></tr>
+         
+		 
+			<tr><td></td><td><input type="submit" value="Submit">
+			</td>
+			</table>
+			<br/><br/><br/><br/>
+				</div>	
+					
+				</div>
+				
+	</body>
+</html>
